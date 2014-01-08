@@ -20,6 +20,11 @@ import (
 	"log"
 )
 
+const (
+	TYPE_PYTHON int = 0
+	TYPE_RUBY int = 1
+)
+
 func init() {
         http.HandleFunc("/fmt", fmtHandler)
         http.HandleFunc("/fmt_ruby", fmtRubyHandler)
@@ -32,7 +37,7 @@ type fmtResponse struct {
 
 func fmtHandler(w http.ResponseWriter, r *http.Request) {
         resp := new(fmtResponse)
-	body, err := execute_python(string(r.FormValue("body")[:]))
+	body, err := execute_code(TYPE_PYTHON, string(r.FormValue("body")[:]))
         if err != nil {
                 resp.Error = string(body[:])
         } else {
@@ -44,7 +49,7 @@ func fmtHandler(w http.ResponseWriter, r *http.Request) {
 func fmtRubyHandler(w http.ResponseWriter, r *http.Request) {
 	log.Print("format ruby handler")
         resp := new(fmtResponse)
-	body, err := execute_python(string(r.FormValue("body")[:]))
+	body, err := execute_code(TYPE_RUBY, string(r.FormValue("body")[:]))
         if err != nil {
                 resp.Error = string(body[:])
         } else {
@@ -69,9 +74,15 @@ func gofmt(body string) (string, error) {
         return buf.String(), nil
 }
 
-func execute_python(pyStr string) ([]byte, error)  {
+func execute_code(lang int, pyStr string) ([]byte, error)  {
         //Write python program to a file
-        file, _ := os.Create("test.py")
+	var ext string
+	if lang == TYPE_PYTHON {
+		ext = ".py"
+	} else {
+		ext = ".rb"
+	}
+        file, _ := os.Create("test" + ext)
         io.WriteString(file, pyStr)
 
 	var out []byte
@@ -87,7 +98,11 @@ func execute_python(pyStr string) ([]byte, error)  {
 	var cmd *exec.Cmd
 	go func() {
 		//Execute the program
-		cmd = exec.Command("python", "test.py")
+		if lang == TYPE_PYTHON {
+			cmd = exec.Command("python", "test.py")
+		} else {
+			cmd = exec.Command("ruby", "test.rb")
+		}
 		out, err = cmd.CombinedOutput()
 		ch <- true
 	}()

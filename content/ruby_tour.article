@@ -16,11 +16,16 @@ Ruby指南
 
 当你准备好继续了，点击右下的“向后”按钮或按 PageDown 键。 也可以使用页面顶端“Ruby”标志下面的菜单进行导航。
 
-.play prog/tour/hello.go
+.play prog/tour/hello_ruby.go
 
-* list
+* 模块，给代码分组
 
-Ruby有超级碉堡的list数组，你可以用超酷的方式[[http://docs.python.org/2/tutorial/datastructures.html#list-comprehensions][操作list]]。
+Math 是一个自带的数学模块。模块在 Ruby 里有两个作用。第一： 把功能相似的函数放到同一个名称下。Math 模块还有 sin() 和 tan() 这样的函数。
 
+接下来的是一个点。点是干什么用的？点是用来告诉一个接收者它所要接受的信息。 什么是信息？在这个例子里面，信息就是 sqrt(9)，意思就是调用 sqrt 函数， 并给它 9 作为参数。当然 sqrt 就是 “square root” 的缩写。
 
-.play prog/tour/list_comprehension.py
+这个函数的返回值是 3.0。您一定发现了它不光只是3，还多了小数部分。 这是因为大多数情况下，开方的结果并不是整数，所以 sqrt 始终会返回浮点数。
+
+如果我们想记住运算结果呢？存到变量里吧。
+
+.play prog/tour/ruby_module.rb
