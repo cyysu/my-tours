@@ -1,0 +1,30 @@
+  /Users/ccheng/go/src/code.google.com/p/go-tour:
+  total used in directory 112 available 35806365
+  drwxr-xr-x+ 28 ccheng  staff   952 Jan  6 10:08 .
+  drwxr-xr-x+  8 ccheng  staff   272 Jan  5 23:02 ..
+  drwxr-xr-x+ 13 ccheng  staff   442 Jan  5 19:33 .hg
+  -rw-r--r--+  1 ccheng  staff    37 Jan  4 16:30 .hgignore
+  -rw-r--r--+  1 ccheng  staff    48 Jan  4 16:30 .hgtags
+  -rw-r--r--+  1 ccheng  staff     0 Jan  5 20:43 .projectile
+  -rw-r--r--+  1 ccheng  staff   173 Jan  4 16:30 AUTHORS
+  -rw-r--r--+  1 ccheng  staff   170 Jan  4 16:30 CONTRIBUTORS
+  -rw-r--r--+  1 ccheng  staff  1479 Jan  4 16:30 LICENSE
+  -rw-r--r--+  1 ccheng  staff    97 Jan  6 10:08 Makefile
+  -rw-r--r--+  1 ccheng  staff   295 Jan  4 16:30 README
+  -rw-r--r--+  1 ccheng  staff  1799 Jan  5 19:17 TAGS
+  -rw-r--r--+  1 ccheng  staff  1926 Jan  4 16:30 TODO
+  -rw-r--r--+  1 ccheng  staff  1428 Jan  4 16:30 TRANSLATE
+  -rw-r--r--+  1 ccheng  staff   317 Jan  4 16:30 app.yaml
+  drwxr-xr-x+  4 ccheng  staff   136 Jan  6 10:06 bin
+  -rw-r--r--+  1 ccheng  staff    94 Jan  4 16:30 codereview.cfg
+  drwxr-xr-x+  4 ccheng  staff   136 Jan  5 21:57 content
+  drwxr-xr-x+  6 ccheng  staff   204 Jan  5 22:35 gotour
+  drwxr-xr-x+  6 ccheng  staff   204 Jan  5 21:28 js
+  drwxr-xr-x+  3 ccheng  staff   102 Jan  4 16:30 pic
+  drwxr-xr-x+ 13 ccheng  staff   442 Jan  4 16:30 solutions
+  drwxr-xr-x+ 11 ccheng  staff   374 Jan  6 09:47 static
+  drwxr-xr-x+  4 ccheng  staff   136 Jan  6 09:58 template
+  -rw-r--r--+  1 ccheng  staff    26 Jan  6 09:48 test.py
+  -rw-r--r--+  1 ccheng  staff   405 Jan  6 09:53 todo.org
+  drwxr-xr-x+  3 ccheng  staff   102 Jan  4 21:11 tree
+  drwxr-xr-x+  3 ccheng  staff   102 Jan  4 16:30 wc

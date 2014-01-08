@@ -1,0 +1,26 @@
+Ruby指南
+
+* Hello, Ruby
+
+欢迎来到[[http://www.python.org][Ruby编程语言]]指南。
+
+该指南被分为三个部分：基础概念、方法和接口，以及并发。
+
+在指南后有若干个练习需要读者完成。
+
+该指南可以进行交互。点击“运行”按钮（或按 Shift + Enter）可以在 远程服务器上 编译并执行程序。 结果展示在代码的下面。
+
+这些例子程序展示了 Ruby 的各个方面。在指南中的程序可以成为你积累经验的开始。
+
+编辑程序并且再次执行它。
+
+当你准备好继续了，点击右下的“向后”按钮或按 PageDown 键。 也可以使用页面顶端“Ruby”标志下面的菜单进行导航。
+
+.play prog/tour/hello.go
+
+* list
+
+Ruby有超级碉堡的list数组，你可以用超酷的方式[[http://docs.python.org/2/tutorial/datastructures.html#list-comprehensions][操作list]]。
+
+
+.play prog/tour/list_comprehension.py

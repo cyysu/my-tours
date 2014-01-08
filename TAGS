@@ -1,0 +1,55 @@
+
+bin/test.py,0
+
+content/prog/tour/list_comprehension.py,124
+squares = [x**2 for x in range(10)]squares1,0
+couples = [(x, y) for x in [1,2,3] for y in [3,1,4] if x != y]couples4,51
+
+js/lang.js,644
+    "off": "开启",tr.off3,40
+    "on": "关闭",tr.on4,61
+    "syntax": "语法高亮",tr.syntax5,81
+    "lineno": "行号",tr.lineno6,111
+    "reset": "重置",tr.reset7,135
+    "format": "Format Source Code",tr.format8,158
+    "kill": "Kill Program",tr.kill9,194
+    "run": "运行tr.run10,222
+    "compile": "Compile and Run",tr.compile12,244
+    "more": "Options",tr.more13,278
+    "toc": "Table of Contents",tr.toc14,301
+    "prev": "Previous",tr.prev15,333
+    "next": "Next",tr.next16,357
+    "waiting": "等待远程服务器...",tr.waiting17,377
+    "errcomm": "远程服务器异常.",tr.errcomm18,420
+
+js/tour.js,1089
+var slides, editor, $editor, $output;slides8,193
+var slide = null;slide9,231
+var slidenum = 0;slidenum10,249
+function L(k) {L13,291
+function init() {init22,438
+function toggleToc() {toggleToc163,3989
+function show(i) {show173,4160
+function reset() {reset233,5525
+function save(page) {save240,5645
+function load(page) {load245,5721
+function urlSlideNumber(url) {urlSlideNumber253,5820
+function pageUpDown(event) {pageUpDown269,6095
+var transport; // set by initTourtransport294,6550
+var running;running295,6584
+function body() {body297,6598
+function loading() {loading301,6646
+function format() {format306,6857
+function highlightOutput(wrappedOutput) {highlightOutput313,7016
+function kill() {kill320,7161
+var seq = 0;seq324,7212
+function run() {run327,7262
+function highlightErrors(text) {highlightErrors353,7824
+function clearHighlightOnChange() {clearHighlightOnChange366,8108
+function getcookie(name) {getcookie375,8325
+function setcookie(name, value, expire) {setcookie390,8687
+window.initTour = function(t) {window.initTour397,8936
+
+Makefile,0
+
+test.py,0
