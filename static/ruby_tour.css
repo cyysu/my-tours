@@ -95,7 +95,7 @@ ol li {
 	bottom: 0;
 	left: 0;
 	right: 550px;
-	background: #E0EBF5;
+	background: #f9d1cf;
 	min-height: 200px;
 }
 
@@ -121,7 +121,7 @@ ol li {
 	bottom: .3em;
 	right: .6em;
 	left: .6em;
-	border: 1px solid #375EAB;
+	border: 1px solid #CC342D;
 	background: #FFFFD8;
 	-webkit-border-top-left-radius: 5px;
 	-webkit-border-top-right-radius: 5px;
@@ -150,7 +150,7 @@ ol li {
 	bottom: .6em;
 	right: .6em;
 	left: .6em;
-	border: 1px solid #375EAB;
+	border: 1px solid #CC342D;
 	background: #FFFFFF;
 	-webkit-border-bottom-left-radius: 5px;
 	-webkit-border-bottom-right-radius: 5px;
@@ -270,10 +270,10 @@ div.source {
 	font-weight: bold;
 	text-decoration: none;
 
-	background: #E0EBF5;
+	background: #f9d1cf;
 
-	border: 2px solid #375EAB;
-	color: #375EAB;
+	border: 2px solid #CC342D;
+	color: #CC342D;
 }
 
 #run {
@@ -289,7 +289,7 @@ div.source {
 #more {
 	margin-left: 0;
 	padding: 2px 5px;
-	border: 2px solid #375EAB;
+	border: 2px solid #CC342D;
 	border-left-width: 1px;
 	-webkit-border-top-right-radius: 5px;
 	-webkit-border-bottom-right-radius: 5px;

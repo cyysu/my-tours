@@ -102,7 +102,7 @@ func initRubyTour(root string) error {
 	}
 
 	// Set up templates.
-	action := filepath.Join(root, "template", "action.tmpl")
+	action := filepath.Join(root, "template", "ruby_action.tmpl")
 	tour := filepath.Join(root, "template", "ruby_tour.tmpl")
 	t := present.Template().Funcs(template.FuncMap{"nocode": nocode, "socketAddr": socketAddr})
 	_, err = t.ParseFiles(action, tour)
