@@ -1,1 +1,7 @@
-print "hello python world"
+#include<stdio.h>
+
+main()
+{
+  printf("Hello World");
+
+}

@@ -17,17 +17,20 @@ import (
         "io"
 	"time"
 	"errors"
-	"log"
 )
 
 const (
 	TYPE_PYTHON int = 0
 	TYPE_RUBY int = 1
+	TYPE_JAVA int = 2
+	TYPE_C int = 3
 )
 
 func init() {
         http.HandleFunc("/fmt", fmtHandler)
         http.HandleFunc("/fmt_ruby", fmtRubyHandler)
+        http.HandleFunc("/fmt_java", fmtJavaHandler)
+        http.HandleFunc("/fmt_c", fmtCHandler)
 }
 
 type fmtResponse struct {
@@ -47,9 +50,30 @@ func fmtHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func fmtRubyHandler(w http.ResponseWriter, r *http.Request) {
-	log.Print("format ruby handler")
         resp := new(fmtResponse)
 	body, err := execute_code(TYPE_RUBY, string(r.FormValue("body")[:]))
+        if err != nil {
+                resp.Error = string(body[:])
+        } else {
+		resp.Body = string(body[:])
+        }
+        json.NewEncoder(w).Encode(resp)
+}
+
+func fmtJavaHandler(w http.ResponseWriter, r *http.Request) {
+        resp := new(fmtResponse)
+	body, err := execute_code(TYPE_JAVA, string(r.FormValue("body")[:]))
+        if err != nil {
+                resp.Error = string(body[:])
+        } else {
+		resp.Body = string(body[:])
+        }
+        json.NewEncoder(w).Encode(resp)
+}
+
+func fmtCHandler(w http.ResponseWriter, r *http.Request) {
+        resp := new(fmtResponse)
+	body, err := execute_code(TYPE_C, string(r.FormValue("body")[:]))
         if err != nil {
                 resp.Error = string(body[:])
         } else {
@@ -79,8 +103,12 @@ func execute_code(lang int, pyStr string) ([]byte, error)  {
 	var ext string
 	if lang == TYPE_PYTHON {
 		ext = ".py"
-	} else {
+	} else if lang == TYPE_RUBY {
 		ext = ".rb"
+	} else if lang == TYPE_C {
+		ext = ".c"
+	} else {
+	  	ext = ".java"
 	}
         file, _ := os.Create("test" + ext)
         io.WriteString(file, pyStr)
@@ -99,9 +127,17 @@ func execute_code(lang int, pyStr string) ([]byte, error)  {
 	go func() {
 		//Execute the program
 		if lang == TYPE_PYTHON {
-			cmd = exec.Command("python", "test.py")
+			cmd = exec.Command("python", "test" + ext)
+		} else if lang == TYPE_RUBY {
+			cmd = exec.Command("ruby", "test.rb")                        
+		} else if lang == TYPE_C {
+			cmd = exec.Command("gcc", "test" + ext)
+			out, err = cmd.CombinedOutput()
+			cmd = exec.Command("./a.out")
 		} else {
-			cmd = exec.Command("ruby", "test.rb")
+			cmd = exec.Command("javac", "test" + ext)
+			out, err = cmd.CombinedOutput()
+			cmd = exec.Command("java", "test")
 		}
 		out, err = cmd.CombinedOutput()
 		ch <- true

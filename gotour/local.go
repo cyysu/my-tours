@@ -102,6 +102,15 @@ func main() {
 	if err := initRubyTour(root); err != nil {
 		log.Fatal(err)
 	}
+	
+
+	if err := initJavaTour(root); err != nil {
+		log.Fatal(err)
+	}
+
+	if err := initCTour(root); err != nil {
+		log.Fatal(err)
+	}
 
 	fs := http.FileServer(http.Dir(root))
 	http.Handle("/favicon.ico", fs)
@@ -128,6 +137,26 @@ func main() {
 		http.Error(w, "not found", 404)
 	})
 
+	http.HandleFunc("/java", func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path == "/java" {
+			if err := renderJavaTour(w); err != nil {
+				log.Println(err)
+			}
+			return
+		}
+		http.Error(w, "not found", 404)
+	})
+
+	http.HandleFunc("/c", func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path == "/c" {
+			if err := renderCTour(w); err != nil {
+				log.Println(err)
+			}
+			return
+		}
+		http.Error(w, "not found", 404)
+	})
+
 	http.Handle(socketPath, socket.Handler)
 
 	err = serveScripts(filepath.Join(root, "js"), "SocketTransport")
@@ -136,7 +165,7 @@ func main() {
 	}
 
 	go func() {
-		url := "http://" + httpAddr + "/ruby"
+		url := "http://" + httpAddr + "/c"
 		if waitServer(url) && *openBrowser && startBrowser(url) {
 			log.Printf("A browser window should open. If not, please visit %s", url)
 		} else {

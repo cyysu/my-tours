@@ -90,7 +90,11 @@
 
         $('#run').click(function() {
             if ($(this).hasClass("ruby")) {
-                run(true);
+                run("ruby");
+            } else if ($(this).hasClass("java")) {
+                run("java");
+            } else if ($(this).hasClass("c")) {
+                run("c");
             } else {
                 run();
             }
@@ -328,13 +332,17 @@
     var seq = 0;
 
     // The format function for go tour.
-    function run(is_ruby) {
+    function run(lang) {
         seq++;
         var cur = seq;
         loading();
         var action;
-        if (is_ruby) {
+        if (lang == "ruby") {
             action = "/fmt_ruby"
+        } else if (lang == "java") {
+            action = "/fmt_java"
+        } else if (lang == "c") {
+            action = "/fmt_c"
         } else {
             action = "/fmt"
         }

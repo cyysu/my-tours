@@ -23,6 +23,10 @@ import (
 var (
 	article     = flag.String("article", "tour.article", "article to load for the tour")
 	rubyArticle     = flag.String("rubyArticle", "ruby_tour.article", "article to load for the tour")
+	javaArticle     = flag.String("javaArticle", "java_tour.article", "article to load for the tour")
+	javaTourContent []byte
+	cArticle     = flag.String("cArticle", "c_tour.article", "article to load for the tour")
+	cTourContent []byte
 	pythonTourContent []byte
 	rubyTourContent []byte
 )
@@ -119,12 +123,106 @@ func initRubyTour(root string) error {
 	return nil
 }
 
+func initJavaTour(root string) error {
+	// Make sure playground is enabled before rendering.
+	present.PlayEnabled = true
+
+	// Open and parse source file.
+	source := *javaArticle
+	f, err := os.Open(source)
+	if err != nil {
+		// See if it exists in the content directory in the root.
+		source = filepath.Join(root, "content", source)
+		f, err = os.Open(source)
+		if err != nil {
+			return err
+		}
+	}
+	defer f.Close()
+	doc, err := present.Parse(prepContent(f), source, 0)
+	if err != nil {
+		return err
+	}
+
+	// Set up templates.
+	action := filepath.Join(root, "template", "java_action.tmpl")
+	tour := filepath.Join(root, "template", "java_tour.tmpl")
+	t := present.Template().Funcs(template.FuncMap{"nocode": nocode, "socketAddr": socketAddr})
+	_, err = t.ParseFiles(action, tour)
+	if err != nil {
+		return err
+	}
+
+	// Render.
+	buf := new(bytes.Buffer)
+	if err := doc.Render(buf, t); err != nil {
+		return err
+	}
+	javaTourContent = buf.Bytes()
+	return nil
+}
+
+func initCTour(root string) error {
+	// Make sure playground is enabled before rendering.
+	present.PlayEnabled = true
+
+	// Open and parse source file.
+	source := *cArticle
+	f, err := os.Open(source)
+	if err != nil {
+		// See if it exists in the content directory in the root.
+		source = filepath.Join(root, "content", source)
+		f, err = os.Open(source)
+		if err != nil {
+			return err
+		}
+	}
+	defer f.Close()
+	doc, err := present.Parse(prepContent(f), source, 0)
+	if err != nil {
+		return err
+	}
+
+	// Set up templates.
+	action := filepath.Join(root, "template", "c_action.tmpl")
+	tour := filepath.Join(root, "template", "c_tour.tmpl")
+	t := present.Template().Funcs(template.FuncMap{"nocode": nocode, "socketAddr": socketAddr})
+	_, err = t.ParseFiles(action, tour)
+	if err != nil {
+		return err
+	}
+
+	// Render.
+	buf := new(bytes.Buffer)
+	if err := doc.Render(buf, t); err != nil {
+		return err
+	}
+	cTourContent = buf.Bytes()
+	return nil
+}
+
+func renderCTour(w io.Writer) error {
+	if cTourContent == nil {
+		panic("renderTour called before successful initTour")
+	}
+	_, err := w.Write(cTourContent)
+	return err
+}
+
 // renderTour writes the tour content to the provided Writer.
 func renderRubyTour(w io.Writer) error {
 	if rubyTourContent == nil {
 		panic("renderTour called before successful initTour")
 	}
 	_, err := w.Write(rubyTourContent)
+	return err
+}
+
+func renderJavaTour(w io.Writer) error {
+	if javaTourContent == nil {
+		panic("renderTour called before successful initTour")
+	}
+	_, err := w.Write(javaTourContent)
 	return err
 }
 

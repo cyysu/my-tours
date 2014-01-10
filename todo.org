@@ -1,15 +1,17 @@
-
 * DONE 输出错误日志，如果运行出错的时候。
-* TODO 添加虚拟运行环境，让python的执行不会影响到服务器的安全
+* DONE 添加虚拟运行环境，让python的执行不会影响到服务器的安全
 * DONE 替换下拉框中的内容，禁止其他东西，出了run之外
 * DONE 替换tutorial中的内容为python的
-* TODO 翻译页面上的一些英文
-* TODO 按照相同的框架，开发ruby版本的，同时跟换主题风格
-* TODO 加上index界面，把learnpy, learnruy, learnjs整合在一起
+* DONE 翻译页面上的一些英文
+* DONE 按照相同的框架，开发ruby版本的，同时跟换主题风格
+* DONE 加上index界面，把learnpy, learnruy, learnjs整合在一起
 * TODO 继续补全tutorial中的题目
-* TODO 加上主界面，暂时不考虑用户系统
-* TODO 替换界面上的一些go相关的要素
+* DONE 加上主界面，暂时不考虑用户系统
+* DONE 替换界面上的一些go相关的要素
   - [ ] 右上角go的标志
   - [X] 左侧左下的可爱的logo
   - [X] 网页的titile
-* TODO 分别为ruby和python添加其特有的frame，在tour里面。更改frame的颜色什么的。
+* DONE 分别为ruby和python添加其特有的frame，在tour里面。更改frame的颜色什么的。
+* TODO 引入测试机制
+* TODO 在给java文件命名的时候不能直接用test来命名，应该根据用户输入的代码里面的class的名字，然后解析出来，再用这个class名字作为这个文件的文件名。
+* TODO 更改java测试的界面的色调

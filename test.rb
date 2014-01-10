@@ -1,3 +1,5 @@
-puts a = 3 ** 2
-puts b = 4 ** 2
-puts Math.sqrt(a+b)
+public class test {
+    public static void main(String[] args) {
+        System.out.printf("hello java world");
+    }
+}
