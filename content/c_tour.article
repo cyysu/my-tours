@@ -17,3 +17,92 @@ c指南
 当你准备好继续了，点击右下的“向后”按钮或按 PageDown 键。 也可以使用页面顶端“c”标志下面的菜单进行导航。
 
 .play prog/tour/hello.c
+
+* 常量
+
+常量（Constant）是程序中最基本的元素，有字符（Character）常量、整数（Integer）常量、浮点数（Floating Point）常量和枚举常量。
+
+.play prog/tour/c/constant.c
+
+
+* 变量
+
+变量（Variable）是编程语言最重要的概念之一，变量是计算机存储器中的一块命名的空间，可以在里面存储一个值（Value），存储的值是可以随时变的，比如这次存个字符'a'下次存个字符'b'，正因为变量的值可以随时变所以才叫变量。
+
+.play prog/tour/c/variable.c
+
+* 表达式 
+
+常量和变量都可以参与加减乘除运算，例如1+1、hour-1、hour * 60 + minute、minute/60等。这里的+ - * /称为运算符（Operator），而参与运算的常量和变量称为操作数（Operand），上面四个由运算符和操作数所组成的算式称为表达式（Expression）。
+
+和数学上规定的一样，hour * 60 + minute这个表达式应该先算乘再算加，也就是说运算符是有优先级（Precedence）的，*和/是同一优先级，+和-是同一优先级，*和/的优先级高于+和-。对于同一优先级的运算从左到右计算，如果不希望按默认的优先级计算则要加()括号（Parenthesis）。例如(3+4)*5/6应先算3+4，再算*5，再算/6。
+
+.play prog/tour/c/expression.c
+
+*  字符类型与字符编码
+
+字符常量或字符型变量也可以当作整数参与运算。
+
+回到刚才的例子，在ASCII码中字符a是97，字符b是98。计算'a'+1这个表达式，应该按ASCII码把'a'当作整数值97，然后加1，得到98，然后printf把98这个整数值当作ASCII码来解释，打印出相应的字符b。
+
+.play prog/tour/c/char_encoding.c
+
+* 自定义函数
+
+我们不仅可以调用C标准库提供的函数，也可以定义自己的函数.
+
+.play prog/tour/c/function.c
+
+* 形参和实参
+
+下面我们定义一个带参数的函数，我们需要在函数定义中指明参数的个数和每个参数的类型，定义参数就像定义变量一样，需要为每个参数指明类型，参数的命名也要遵循标识符命名规则。
+
+.play prog/tour/c/paramters.c
+
+* 局部变量
+
+我们把函数中定义的变量称为局部变量（Local Variable），由于形参相当于函数中定义的变量，所以形参也是一种局部变量。在这里“局部”有两层含义：
+
+1、一个函数中定义的变量不能被另一个函数使用。例如print_time中的hour和minute在main函数中没有定义，不能使用，同样main函数中的局部变量也不能被print_time函数使用。如果这样定义：
+
+    void print_time(int hour, int minute)
+    {
+    	printf("%d:%d\n", hour, minute);
+    }
+    
+    int main(void)
+    {
+    	int hour = 23, minute = 59;
+    	print_time(hour, minute);
+    	return 0;
+    }
+
+main函数中定义了局部变量hour，print_time函数中也有参数hour，虽然它们名称相同，但仍然是两个不同的变量，代表不同的存储单元。main函数的局部变量minute和print_time函数的参数minute也是如此。
+
+.play prog/tour/c/local_variable.c
+
+* 全局变量
+
+每次调用函数时局部变量都表示不同的存储空间。局部变量在每次函数调用时分配存储空间，在每次函数返回时释放存储空间，例如调用print_time(23, 59)时分配hour和minute两个变量的存储空间，在里面分别存上23和59，函数返回时释放它们的存储空间，下次再调用print_time(12, 20)时又分配hour和minute的存储空间，在里面分别存上12和20。
+
+与局部变量的概念相对的是全局变量（Global Variable），全局变量定义在所有的函数体之外，它们在程序开始运行时分配存储空间，在程序结束时释放存储空间，在任何函数中都可以访问全局变量，例如：
+
+    #include <stdio.h>
+    
+    int hour = 23, minute = 59;
+    
+    void print_time(void)
+    {
+    	printf("%d:%d in print_time\n", hour, minute);
+    }
+    
+    int main(void)
+    {
+    	print_time();
+    	printf("%d:%d in main\n", hour, minute);
+    	return 0;
+    }
+
+正因为全局变量在任何函数中都可以访问，所以在程序运行过程中全局变量被读写的顺序从源代码中是看不出来的，源代码的书写顺序并不能反映函数的调用顺序。程序出现了Bug往往就是因为在某个不起眼的地方对全局变量的读写顺序不正确，如果代码规模很大，这种错误是很难找到的。而对局部变量的访问不仅局限在一个函数内部，而且局限在一次函数调用之中，从函数的源代码很容易看出访问的先后顺序是怎样的，所以比较容易找到Bug。因此，虽然全局变量用起来很方便，但一定要慎用，能用函数传参代替的就不要用全局变量。
+
+.play prog/tour/c/global_variable.c
