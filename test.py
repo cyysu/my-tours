@@ -1,7 +1,2 @@
-#include<stdio.h>
-
-main()
-{
-  printf("Hello World");
-
-}
+my_variable = 5
+print my_variable

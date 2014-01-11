@@ -18,14 +18,11 @@ Ruby指南
 
 .play prog/tour/hello_ruby.go
 
-* 模块，给代码分组
+* Data Types: Numbers, Strings, Booleans
+In Ruby, your information (or data) can come in different types. There are three data types in Ruby that we're interested in right now: numbers, booleans (which can be true or false), and strings (words or phrases like "I'm learning Ruby!").
 
-Math 是一个自带的数学模块。模块在 Ruby 里有两个作用。第一： 把功能相似的函数放到同一个名称下。Math 模块还有 sin() 和 tan() 这样的函数。
+Computer programs exist to quickly analyze and manipulate data. For that reason, it's important for us to understand the different data types that we can use in our programs.
 
-接下来的是一个点。点是干什么用的？点是用来告诉一个接收者它所要接受的信息。 什么是信息？在这个例子里面，信息就是 sqrt(9)，意思就是调用 sqrt 函数， 并给它 9 作为参数。当然 sqrt 就是 “square root” 的缩写。
+Reminder: never use quotation marks (' or ") with booleans, or Ruby will think you're talking about a string (a word or phrase) instead of a value that can be true or false. It's also important to remember that Ruby is case-sensitive (it cares about capitalization).
 
-这个函数的返回值是 3.0。您一定发现了它不光只是3，还多了小数部分。 这是因为大多数情况下，开方的结果并不是整数，所以 sqrt 始终会返回浮点数。
-
-如果我们想记住运算结果呢？存到变量里吧。
-
-.play prog/tour/ruby_module.rb
+.play prog/tour/hello_ruby.go

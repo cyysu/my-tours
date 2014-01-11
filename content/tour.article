@@ -17,3 +17,62 @@ Python指南
 当你准备好继续了，点击右下的“向后”按钮或按 PageDown 键。 也可以使用页面顶端“Python”标志下面的菜单进行导航。
 
 .play prog/tour/hello.go
+
+* Variables
+
+Creating web apps, games, and search engines all involve storing and working with different types of data. They do so using variables. A variable stores a piece of data, and gives it a specific name.
+
+For example:
+
+    spam = 5
+    
+The variable spam now stores the number 5.
+
+.play prog/tour/python/variable.py
+
+* Booleans
+
+Great! You just stored a number in a variable. Numbers are one data type we use in programming. A second data type is called a boolean.
+
+A boolean is like a light switch. It can only have two values. Just like a light switch can only be on or off, a boolean can only be True or False.
+
+You can use variables to store booleans like this:
+
+    a = True
+    b = False
+
+.play prog/tour/python/booleans.py
+
+* You've Been Reassigned
+
+Now you know how to use variables to store values.
+
+Say my_int = 7. You can change the value of a variable by "reassigning" it, like this:
+
+    my_int = 3
+
+.play prog/tour/python/reassigned.py
+
+* Whitespace
+
+In Python, whitespace is used to structure code. Whitespace is important, so you have to be careful with how you use it.
+
+.play prog/tour/python/whitespace.py
+
+* Single Line Comments
+
+You probably saw us use the # sign a few times in earlier exercises. The # sign is for comments. A comment is a line of text that Python won't try to run as code. It's just for humans to read.
+
+Comments make your program easier to understand. When you look back at your code or others want to collaborate with you, they can read your comments and easily figure out what your code does.
+
+.play prog/tour/python/comments.py
+
+* Math
+Great! Now let's do some math. You can add, subtract, multiply, divide numbers like this
+
+    Addition: 72 + 23
+    Subtraction: 108 - 204
+    Multiplication: 108 * 0.5
+    Division: 108 / 9
+
+.play prog/tour/python/math.py    
