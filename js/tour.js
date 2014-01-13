@@ -89,15 +89,18 @@
         });
 
         $('#run').click(function() {
+            var num = $('#slidenum').text()
+            var options = {'num': num}
             if ($(this).hasClass("ruby")) {
-                run("ruby");
+                options['lang'] = "ruby";
             } else if ($(this).hasClass("java")) {
-                run("java");
+                options['lang'] = "java";
             } else if ($(this).hasClass("c")) {
-                run("c");
+                options['lang'] = "c";
             } else {
-                run();
+                options['lang'] = 'python';
             }
+            run(options)
             $('.controls').removeClass('expanded');
             return false;
         });
@@ -176,6 +179,23 @@
             $('#toc').show();
         }
         return false;
+    }
+
+    function show_popup(str) {
+        var icon = $('#lang-icon')
+        icon.attr("data-content", str)
+        icon.popover("show")
+        window.setTimeout(function() {
+            icon.popover("hide")
+        }, 3000);
+    }
+
+    function popup_success() {
+        show_popup("正确")
+    }
+
+    function popup_fail() {
+        show_popup("错误")
     }
 
     function show(i) {
@@ -332,10 +352,11 @@
     var seq = 0;
 
     // The format function for go tour.
-    function run(lang) {
+    function run(options) {
         seq++;
         var cur = seq;
         loading();
+        var lang = options['lang']
         var action;
         if (lang == "ruby") {
             action = "/fmt_ruby"
@@ -344,7 +365,7 @@
         } else if (lang == "c") {
             action = "/fmt_c"
         } else {
-            action = "/fmt"
+            action = "/fmt?" + "num=2"
         }
         $.ajax(action, {
             data: {"body": body()},
@@ -355,11 +376,17 @@
                     return;
                 }
                 $output.empty();
-                if (data.Error) {
-                    $('<pre class="error" />').text(data.Error).appendTo($output);
-                    highlightErrors(data.Error);
+                var cls = "error" ? data.Error : "system"
+                console.log("----------------" + data.Hint);
+                if (data.Body) {
+                    $('<pre class=' + cls + ' />').text(data.Body).appendTo($output);
                 } else {
-                    $('<pre class="system" />').text(data.Body).appendTo($output);
+                    $('<pre class=' + cls + ' />').text(data.Error).appendTo($output);
+                    highlightErrors(data.Error);
+                }
+                
+                if (data.Hint) {
+                    show_popup(data.Hint)
                 }
             },
             error: function() {

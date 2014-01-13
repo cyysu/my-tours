@@ -17,6 +17,8 @@ import (
         "io"
 	"time"
 	"errors"
+
+	// "code.google.com/p/go-tour/main/validator"
 )
 
 const (
@@ -27,7 +29,7 @@ const (
 )
 
 func init() {
-        http.HandleFunc("/fmt", fmtHandler)
+        http.HandleFunc("/fmt", fmtPythonHandler)
         http.HandleFunc("/fmt_ruby", fmtRubyHandler)
         http.HandleFunc("/fmt_java", fmtJavaHandler)
         http.HandleFunc("/fmt_c", fmtCHandler)
@@ -36,9 +38,10 @@ func init() {
 type fmtResponse struct {
         Body  string
         Error string
+	Hint string
 }
 
-func fmtHandler(w http.ResponseWriter, r *http.Request) {
+func fmtPythonHandler(w http.ResponseWriter, r *http.Request) {
         resp := new(fmtResponse)
 	body, err := execute_code(TYPE_PYTHON, string(r.FormValue("body")[:]))
         if err != nil {
@@ -46,6 +49,16 @@ func fmtHandler(w http.ResponseWriter, r *http.Request) {
         } else {
 		resp.Body = string(body[:])
         }
+
+	_, hint := validate_python(1, string(body[:]))
+	
+	resp.Hint = hint
+	resp.Body = ""
+	
+	// if strings.TrimSpace(string(body[:])) != "hello python world" {
+	// 	resp.Error = "error"
+	// }
+	
         json.NewEncoder(w).Encode(resp)
 }
 

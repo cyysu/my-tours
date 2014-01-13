@@ -1,2 +1,1 @@
-my_variable = 5
-print my_variable
+print "hello python worldasdf"
