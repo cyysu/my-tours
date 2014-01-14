@@ -17,6 +17,8 @@ import (
         "io"
 	"time"
 	"errors"
+	"strconv"
+	"log"
 
 	// "code.google.com/p/go-tour/main/validator"
 )
@@ -43,6 +45,8 @@ type fmtResponse struct {
 
 func fmtPythonHandler(w http.ResponseWriter, r *http.Request) {
         resp := new(fmtResponse)
+	num, err := strconv.Atoi(r.FormValue("num"))
+	log.Printf("----------%d", num)
 	body, err := execute_code(TYPE_PYTHON, string(r.FormValue("body")[:]))
         if err != nil {
                 resp.Error = string(body[:])
@@ -50,14 +54,12 @@ func fmtPythonHandler(w http.ResponseWriter, r *http.Request) {
 		resp.Body = string(body[:])
         }
 
-	_, hint := validate_python(1, string(body[:]))
-	
-	resp.Hint = hint
-	resp.Body = ""
-	
-	// if strings.TrimSpace(string(body[:])) != "hello python world" {
-	// 	resp.Error = "error"
-	// }
+	if err == nil {
+		_, hint := validate_python(num, string(body[:]))
+		resp.Hint = hint
+	} else {
+		resp.Hint = "出错了"
+	}
 	
         json.NewEncoder(w).Encode(resp)
 }
@@ -116,6 +118,7 @@ func execute_code(lang int, pyStr string) ([]byte, error)  {
 	var ext string
 	if lang == TYPE_PYTHON {
 		ext = ".py"
+		pyStr = "#coding:utf-8\n" + pyStr
 	} else if lang == TYPE_RUBY {
 		ext = ".rb"
 	} else if lang == TYPE_C {

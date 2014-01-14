@@ -2,6 +2,8 @@ package main
 
 import (
 	"strings"
+	"strconv"
+	"log"
 )
 
 type Rule struct {
@@ -11,6 +13,7 @@ type Rule struct {
 
 const (
         TYPE_STRING_EQUAL = 1
+        TYPE_NUM_EQUAL = 2
 )
 
 func is_valid(output string, rule Rule) (bool, string){
@@ -27,12 +30,48 @@ func is_valid(output string, rule Rule) (bool, string){
 	return false, "Not implemented yet"	
 }
 
+func valid_int(output string, num int) (bool, string){
+	istr, err := strconv.Atoi(output)
+	if err != nil {
+		return false, "需要一个数字类型"
+	}
+
+	if istr == num {
+		return true, "cool"
+	} else if istr < num {
+		return false, "数字太小"
+	} else {
+		return false, "数字太大"
+	}
+}
+
+func custom_valid_str(output string, target string, right_resp string, wrong_resp string) (bool, string){
+	if output == target {
+		return true, right_resp
+	} else  {
+		return false, wrong_resp
+	}
+}
+
+func dumb_validation() (bool, string){
+	return true, ""
+}
+
+
 func validate_python(num int, output string) (bool, string) {
+	output = strings.TrimSpace(output)
         switch num {
         case 1:
-                rule := Rule{TYPE_STRING_EQUAL, "hello python world"}
-                return is_valid(output, rule)
+		var rule Rule
+                rule = Rule{TYPE_STRING_EQUAL, "hello python world"}
+		return is_valid(output, rule)
+        case 2:
+		return valid_int(output, 6)
+        case 3, 5, 6, 7:
+		return dumb_validation()
+        case 4:
+		return custom_valid_str(output, "python is awesome", "没错", "python才不糟糕呢")
         }
-
-	return false, "Not implemented yet"
+	log.Fatal("Not implemented yet")
+	return false, ""
 }

@@ -4,75 +4,90 @@ Python指南
 
 欢迎来到[[http://www.python.org][Python编程语言]]指南。
 
-该指南被分为三个部分：基础概念、方法和接口，以及并发。
-
-在指南后有若干个练习需要读者完成。
-
-该指南可以进行交互。点击“运行”按钮（或按 Shift + Enter）可以在 远程服务器上 编译并执行程序。 结果展示在代码的下面。
-
 这些例子程序展示了 Python 的各个方面。在指南中的程序可以成为你积累经验的开始。
 
 编辑程序并且再次执行它。
 
 当你准备好继续了，点击右下的“向后”按钮或按 PageDown 键。 也可以使用页面顶端“Python”标志下面的菜单进行导航。
 
+*练习*
+
+输出“hello world python”
+
 .play prog/tour/hello.go
 
-* Variables
+* 变量
 
-Creating web apps, games, and search engines all involve storing and working with different types of data. They do so using variables. A variable stores a piece of data, and gives it a specific name.
+写网站，游戏，或者搜索引擎都需要我们使用变量。变量是用来存储一个数据，并且有一个自己特有的名字。
 
-For example:
+比如：
 
     spam = 5
-    
-The variable spam now stores the number 5.
+
+现在，这个变量spam就已经存储了一个数字5
+
+*练习*
+
+把题目中my_variable的变量值改成6
 
 .play prog/tour/python/variable.py
 
-* Booleans
+* 布尔类型
 
-Great! You just stored a number in a variable. Numbers are one data type we use in programming. A second data type is called a boolean.
+干得不错！你刚刚把一个数字存储到变量里面。数字类型只是各种类型中的一种。接下来我们来看看叫做布尔类型的变量吧。
 
-A boolean is like a light switch. It can only have two values. Just like a light switch can only be on or off, a boolean can only be True or False.
+一个布尔类型就像一个电灯开关。它只有两种状态。就像一个电灯开关只能开和关，布尔类型只有true和false。
 
-You can use variables to store booleans like this:
+你可以像这样使用布尔类型:
 
     a = True
     b = False
 
 .play prog/tour/python/booleans.py
 
-* You've Been Reassigned
+* 重新赋值变量
 
-Now you know how to use variables to store values.
+现在你已经知道怎么存储变量了。接下来我们要开始练习如何改变一个变量的值。
 
-Say my_int = 7. You can change the value of a variable by "reassigning" it, like this:
+比如说我们现在有 my_int = 7. 你能够改变这个变量的值通过“重新赋值”。就像下面这样：
 
     my_int = 3
 
+*练习*
+
+把my_str改成python is awesome输出
+
 .play prog/tour/python/reassigned.py
 
-* Whitespace
+* 空格
 
-In Python, whitespace is used to structure code. Whitespace is important, so you have to be careful with how you use it.
+在python中，空格用来格式化代码。所以空格非常重要，你必须非常小心。
+
+*练习*
+
+这个错误的使用空格的例子改成能够正常运行
 
 .play prog/tour/python/whitespace.py
 
-* Single Line Comments
+* 注释
 
-You probably saw us use the # sign a few times in earlier exercises. The # sign is for comments. A comment is a line of text that Python won't try to run as code. It's just for humans to read.
+在前几个练习中，你可能已经看到我们用了好几次#符号了。#符号就是用来注释的。被注释的代码不会被执行，而只是用来人们越度的。
 
-Comments make your program easier to understand. When you look back at your code or others want to collaborate with you, they can read your comments and easily figure out what your code does.
+注释让你的代码更容易阅读（但是太多的话就是另外一回事了）。所以好好使用这个特性吧。
+
+*练习*
+
+注释这行代码让它不会输出。
 
 .play prog/tour/python/comments.py
 
-* Math
-Great! Now let's do some math. You can add, subtract, multiply, divide numbers like this
+* 数学运算
 
-    Addition: 72 + 23
-    Subtraction: 108 - 204
-    Multiplication: 108 * 0.5
-    Division: 108 / 9
+不错! 现在让我们来做一些运算. 你可以想下面这样子来进行加，减，乘，除：
+
+    加: 72 + 23
+    减: 108 - 204
+    乘: 108 * 0.5
+    除: 108 / 9
 
 .play prog/tour/python/math.py    

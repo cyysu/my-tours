@@ -365,8 +365,9 @@
         } else if (lang == "c") {
             action = "/fmt_c"
         } else {
-            action = "/fmt?" + "num=2"
+            action = "/fmt"
         }
+        action = action + "?num=" + options['num']
         $.ajax(action, {
             data: {"body": body()},
             type: "POST",
@@ -377,7 +378,6 @@
                 }
                 $output.empty();
                 var cls = "error" ? data.Error : "system"
-                console.log("----------------" + data.Hint);
                 if (data.Body) {
                     $('<pre class=' + cls + ' />').text(data.Body).appendTo($output);
                 } else {

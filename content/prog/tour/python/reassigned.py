@@ -1,5 +1,6 @@
-my_int = 3
-print my_int
+my_str = "python is evil"
 
-my_int = 7
-print my_int
+#把你的代码写在这里
+
+print my_str
+
