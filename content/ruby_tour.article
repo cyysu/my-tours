@@ -18,11 +18,77 @@ Ruby指南
 
 .play prog/tour/hello_ruby.go
 
-* Data Types: Numbers, Strings, Booleans
-In Ruby, your information (or data) can come in different types. There are three data types in Ruby that we're interested in right now: numbers, booleans (which can be true or false), and strings (words or phrases like "I'm learning Ruby!").
+* 数据类型: 数字,字符串,布尔类型
 
-Computer programs exist to quickly analyze and manipulate data. For that reason, it's important for us to understand the different data types that we can use in our programs.
+在Ruby里面,数据以各种不同的类型存在.
 
-Reminder: never use quotation marks (' or ") with booleans, or Ruby will think you're talking about a string (a word or phrase) instead of a value that can be true or false. It's also important to remember that Ruby is case-sensitive (it cares about capitalization).
+现在我们主要关注三个不同的类型,分别是: 数字类型,布尔类型（值只能是真或者假），和字符串类型。
 
-.play prog/tour/hello_ruby.go
+*练习*
+
+改变这些变量的数值
+
+- my_num 改成 25
+- my_boolean 改成true
+- my_string 改成ruby
+
+.play prog/tour/ruby/variables.rb
+
+* 数学运算
+Ruby不只是能做简单的赋值操作比如my_num = 100; 它也可以完成各种你在学校里面学到的各种数学运算。
+
+我们一起来关注一下这六种数学运算：
+
+加法 (+)
+减法 (-)
+乘法 (*)
+除法 (/)
+指数次幂 (**)
+取余 (%)
+
+*练习*
+
+随心所欲的写点数学运算吧，你行的
+
+.play prog/tour/ruby/math.rb
+
+* 'puts' 和 'print'
+print命令能够把一切你给它的东西都打印出来。puts有一点不同，它会再每次打印之后都加一个空行。你可以想下面这样子用
+
+- puts "what's up"
+- print "毛事"
+
+.play prog/tour/ruby/print.rb
+
+* '.length' 方法
+Ruby中的方法通过"."来进行调用。
+
+比如说你有一个string，叫做“I love espresso"。你可以通过length方法来求出它的长度。
+
+    print "love espresso".length
+
+.play prog/tour/ruby/length.rb
+
+* '.reverse' 方法
+
+reverse方法和length方法调用方式一样。它的作用是把字符串进行反转。
+
+所以
+
+        "Eric".reverse
+        
+会得出
+
+        "cirE"
+
+.play prog/tour/ruby/reverse.rb
+
+* '.upcase' 和 '.downcase'
+
+然后我来尝试下另外两个方法：upcase和downcase。就像你已经猜到的一样，.upcase和.downcase方法把字符串全部转换成大写或者小写。
+
+*练习*
+
+把凭木中的upcase和downcase风别抓换成大写和小写吧。
+
+.play prog/tour/ruby/case.rb

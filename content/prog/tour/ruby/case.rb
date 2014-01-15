@@ -1,0 +1,2 @@
+puts "upcase"
+puts "DOWNCASE"

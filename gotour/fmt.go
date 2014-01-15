@@ -66,12 +66,22 @@ func fmtPythonHandler(w http.ResponseWriter, r *http.Request) {
 
 func fmtRubyHandler(w http.ResponseWriter, r *http.Request) {
         resp := new(fmtResponse)
+	num, err := strconv.Atoi(r.FormValue("num"))
+	log.Printf("----------%d", num)
 	body, err := execute_code(TYPE_RUBY, string(r.FormValue("body")[:]))
         if err != nil {
                 resp.Error = string(body[:])
         } else {
 		resp.Body = string(body[:])
         }
+
+	if err == nil {
+		_, hint := validate_ruby(num, string(body[:]))
+		resp.Hint = hint
+	} else {
+		resp.Hint = "出错了"
+	}
+
         json.NewEncoder(w).Encode(resp)
 }
 

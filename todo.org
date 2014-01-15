@@ -15,3 +15,4 @@
 * TODO 引入测试机制
 * TODO 在给java文件命名的时候不能直接用test来命名，应该根据用户输入的代码里面的class的名字，然后解析出来，再用这个class名字作为这个文件的文件名。
 * TODO 更改java测试的界面的色调
+* TODO 更改codemirrors，让它能够合适地高亮各种语言。

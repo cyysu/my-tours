@@ -1,0 +1,1 @@
+print "evol".reverse

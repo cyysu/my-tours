@@ -17,7 +17,7 @@ body {
 	min-height: 100%;
 	margin: 0 0 0 auto;
 	width: 550px;
-	background: #FFF url(ruby_icon.png) no-repeat 1.2em bottom;
+	background: #FFF no-repeat 1.2em bottom;
 	position: relative;
 }
 
@@ -435,4 +435,16 @@ div.nav a:hover {
 		right: 2.6em;
 		margin-top: .6em;
 	}
+}
+
+#lang-icon {
+    position: fixed;
+    right: 354px;
+    bottom: 0;
+    width: 196px;
+    height: 196px;
+}
+
+pre {
+    border: none;
 }
