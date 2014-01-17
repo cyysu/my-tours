@@ -108,7 +108,7 @@ func validate_ruby(num int, output string) (bool, string) {
         switch num {
         case 2:
                 return validate_ruby_variable(output)
-        case 3, 4, 5, 6:
+        case 1, 3, 4, 5, 6:
                 return dumb_validation()
         case 7:
                 return validate_ruby_case(output)

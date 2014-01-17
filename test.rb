@@ -1,2 +1,0 @@
-puts "UPCASE"
-puts "downcase"
